@@ -40,7 +40,7 @@ public class BookService {
      * @return all books.
      */
     public List<Book> getAllBooks() {
-        return null;
+        return bookDAO.getAllBooks();
     }
     /**
      * TODO: Use the bookDAO to persist a book to the database.
@@ -51,15 +51,19 @@ public class BookService {
      * key was already in use.)
      */
     public Book addBook(Book book) {
-
-        return null;
+        Book temp = bookDAO.getBookByIsbn(book.getIsbn());
+        if(temp == null){
+            Book boo1 = bookDAO.insertBook(book);
+            return boo1;
+        }
+        return null; 
     }
     /**
      * TODO: Use the bookDAO to retrieve a list of all books that have a bookCount above 0.
      * @return all available books (bookCount over zero)
      */
     public List<Book> getAllAvailableBooks() {
-        return null;
+       return bookDAO.getBooksWithBookCountOverZero();
     }
 
 }
